@@ -1,0 +1,87 @@
+import streamlit as st
+import pandas as pd
+from datetime import date
+
+st.title("💖 Daily Mood Tracker 💖")
+
+# --- Initialize session state correctly ---
+if 'mood_data' not in st.session_state or 'reset' not in st.session_state:
+    st.session_state.mood_data = pd.DataFrame(columns=['Date', 'Period', 'Weather', 'Smiles'])
+    st.session_state.reset = True  # flag to prevent recreating columns
+
+# --- Inputs ---
+period_days = st.number_input("Days until your period:", min_value=0, max_value=31, value=15)
+weather = st.slider("Weather today: 0 = Storm 🌩, 5 = Very Sunny ☀️", 0, 5, 3)
+smiles = st.slider("Smiles / laughter today (0 = none, 10 = lots 😄)", 0, 10, 5)
+
+# --- Add entry ---
+if st.button("Add Mood Entry"):
+    # Determine period label with emoji
+    if period_days <= 8:
+        period_label = f"{period_days} days 🔴"
+    elif period_days <= 15:
+        period_label = f"{period_days} days 🟡"
+    else:
+        period_label = f"{period_days} days 🟢"
+
+    # Create new entry (only Period, no Period Days column)
+    new_entry = pd.DataFrame({
+        'Date': [date.today()],
+        'Period': [period_label],
+        'Weather': [weather],
+        'Smiles': [smiles]
+    })
+
+    # Replace the old DataFrame completely to avoid old columns
+    st.session_state.mood_data = pd.concat([st.session_state.mood_data, new_entry], ignore_index=True)
+    st.success("Mood entry added!")
+
+# --- Display last 10 entries ---
+st.subheader("Last 10 entries")
+st.dataframe(st.session_state.mood_data.tail(10), width=400, height=300)
+
+# --- Delete last entry ---
+if st.button("Delete last entry"):
+    if not st.session_state.mood_data.empty:
+        st.session_state.mood_data = st.session_state.mood_data[:-1]
+        st.success("Last entry deleted!")
+    else:
+        st.warning("No entries to delete.")
+
+st.subheader("💡 Mood Suggestions 💡")
+
+# Period-based suggestions
+if period_days <= 8:
+    st.warning("Period is approaching soon — take extra care of yourself!")
+elif period_days <= 15:
+    st.info("Period is a bit away — a good time to plan some self-care!")
+else:
+    st.success("Period is far away — enjoy your day! 🌞")
+
+# Weather-based suggestions
+if weather == 0:
+    st.info("Stormy day outside 🌩 — maybe stay cozy indoors and watch something fun!")
+elif weather <= 2:
+    st.info("A bit gloomy outside 🌧️ — perfect for reading, relaxing, or calling a friend!")
+elif weather <= 4:
+    st.success("Nice weather ☀️ — a short walk can boost your mood!")
+else:
+    st.success("Absolutely sunny 🌞 — enjoy the day and maybe go outside!")
+
+# Smiles / laughter-based suggestions
+if smiles == 0:
+    st.warning("No smiles today? 😔 Try to watch a comedy or call someone to laugh!")
+elif smiles <= 4:
+    st.info("Some smiles today 🙂 — keep it going!")
+elif smiles <= 7:
+    st.success("Good job laughing today 😄 — keep your spirits up!")
+else:
+    st.success("Awesome! 😆 Lots of laughter today — keep spreading joy!")
+
+# Combined suggestions
+if period_days <= 8 and weather <= 1 and smiles <= 2:
+    st.error("Tough day ahead 😣 — consider calling a friend, watching a favorite show, or relaxing with some comfort food!")
+elif period_days <= 8 and smiles >= 7:
+    st.success("Even close to period, your high spirits shine! Keep smiling 🌟")
+elif weather == 0 and smiles >= 7:
+    st.success("Stormy outside but your mood is great 😄 — keep the positive energy flowing!")

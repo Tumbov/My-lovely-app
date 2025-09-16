@@ -12,7 +12,7 @@ if 'mood_data' not in st.session_state or 'reset' not in st.session_state:
 # --- Inputs ---
 period_days = st.number_input("Days until your period:", min_value=0, max_value=31, value=15)
 weather = st.slider("Weather today: 0 = Storm 🌩, 5 = Very Sunny ☀️", 0, 5, 3)
-smiles = st.slider("Smiles / laughter today (0 = none, 10 = lotss 😄)", 0, 10, 5)
+smiles = st.slider("Smiles / laughter today (0 = none, 10 = lots 😄)", 0, 10, 5)
 
 # --- Add entry ---
 if st.button("Add Mood Entry"):
@@ -85,4 +85,5 @@ elif period_days <= 8 and smiles >= 7:
     st.success("Even close to period, your high spirits shine! Keep smiling 🌟")
 elif weather == 0 and smiles >= 7:
     st.success("Stormy outside but your mood is great 😄 — keep the positive energy flowing!")
+
 

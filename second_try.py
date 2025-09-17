@@ -112,7 +112,17 @@ if st.button("Add Happiness Boost"):
         st.success("Even close to period, your high spirits shine! 🌟")
     elif weather == 0 and smiles >= 7:
         st.success("Stormy outside but your mood is great 😄 — keep the energy up!")
-    
+    # --- COLOR BACKGROUND --- #
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #fc0fc0;  /* Light blue background */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 

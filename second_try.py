@@ -24,31 +24,7 @@ if st.button("Add Mood Entry"):
     else:
         period_label = f"{period_days} days 🟢"
 
-    # Create new entry (only Period, no Period Days column)
-    new_entry = pd.DataFrame({
-        'Date': [date.today()],
-        'Period': [period_label],
-        'Weather': [weather],
-        'Smiles': [smiles]
-    })
-
-    # Replace the old DataFrame completely to avoid old columns
-    st.session_state.mood_data = pd.concat([st.session_state.mood_data, new_entry], ignore_index=True)
-    st.success("Mood entry added!")
-
-# --- Display last 10 entries ---
-st.subheader("Last 10 entries")
-st.dataframe(st.session_state.mood_data.tail(10), width=400, height=300)
-
-# --- Delete last entry ---
-if st.button("Delete last entry"):
-    if not st.session_state.mood_data.empty:
-        st.session_state.mood_data = st.session_state.mood_data[:-1]
-        st.success("Last entry deleted!")
-    else:
-        st.warning("No entries to delete.")
-
-st.subheader("💡 Mood Suggestions 💡")
+  
 
 # Period-based suggestions
 if period_days <= 8:
@@ -85,5 +61,6 @@ elif period_days <= 8 and smiles >= 7:
     st.success("Even close to period, your high spirits shine! Keep smiling 🌟")
 elif weather == 0 and smiles >= 7:
     st.success("Stormy outside but your mood is great 😄 — keep the positive energy flowing!")
+
 
 

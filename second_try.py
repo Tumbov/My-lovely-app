@@ -117,12 +117,13 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #fc0fc0;  /* Light blue background */
+        background-color: #00ccff;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 

@@ -113,15 +113,17 @@ if st.button("Add Happiness Boost"):
     elif weather == 0 and smiles >= 7:
         st.success("Stormy outside but your mood is great 😄 — keep the energy up!")
     # --- COLOR BACKGROUND --- #
+color = st.color_picker("↓↓↓ down here darling, change whatever color you want ;)", "#000000")
 st.markdown(
-    """
+    f"""
     <style>
-    .stApp {
-        background-color: #00ccff;
-    }
+    .stApp {{
+        background-color: {color};
+    }}
     </style>
     """,
     unsafe_allow_html=True
+
 )
 
 

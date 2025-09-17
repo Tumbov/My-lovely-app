@@ -5,6 +5,14 @@ today= date.today ()
 period_day = 8
 period_window = 2
 
+
+st.text ('Rate his perfomance today')
+sentiment_mapping = ["You must tell him where he should do better", "Hold on, maybe it is not his day", "Well, this is completely okay, everyone has a good and a bad days and periods", "We are in the UP'S, enjoy every second", "TELL HIM HOW MUCH!!"]
+selected = st.feedback("stars")
+
+if selected is not None:
+    st.markdown(f"{sentiment_mapping[selected]}")
+
 st.title("💖 Daily Happiness Boost 💖")
 
 # --- Initialize session state correctly ---
@@ -100,5 +108,6 @@ if st.button("Add Happiness Boost"):
     elif weather == 0 and smiles >= 7:
         st.success("Stormy outside but your mood is great 😄 — keep the energy up!")
     
+
 
 

@@ -21,6 +21,15 @@ checked = st.checkbox("Am I already on my period?")
 today = date.today()
 
 if st.button("Add Happiness Boost"):
+    # --- GIFS, PICTURES, ANYTHING EXTRA --- #
+    if smiles == 0:
+        st.image("https://media.tenor.com/UGQDrLmTceUAAAAi/cat-transparent.gif", caption="Cheer up! Watch a comedy 🎬")
+    elif smiles == 10:
+        st.image("https://media.tenor.com/HLrXIleGBToAAAAi/transparent-cat.gif", caption="Keep shining 🌟")
+    elif smiles == 5:
+        st.image ("https://media1.tenor.com/m/Dwrij1L3z_0AAAAC/gnome-knitting-gnome.gif", caption ="You are getting there darling!")
+    elif smiles == 1:
+        st.image ("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzZiM3R4NjZ3cTd5aWg3aGk4ZzRzeDB1cnVxaHpxODFnZjYyN2lkYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYsDZrZAggnPPGM/giphy.gif", caption = "YOU ARE GETTING THERE !!! better one than none ;)" )
          # --- Determine period status ---
     if checked:
         st.error("BLOOD BLOOD EVERYWHERE — you are on your period 🔴")
@@ -87,3 +96,4 @@ if st.button("Add Happiness Boost"):
     elif weather == 0 and smiles >= 7:
         st.success("Stormy outside but your mood is great 😄 — keep the energy up!")
     
+

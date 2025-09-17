@@ -10,24 +10,33 @@ if 'mood_data' not in st.session_state or 'reset' not in st.session_state:
     st.session_state.reset = True  # flag to prevent recreating columns
 
 # --- Inputs ---
-period_days = st.number_input("Days until your period:", min_value=0, max_value=31, value=15)
 weather = st.slider("Weather today: 0 = Storm 🌩, 5 = Very Sunny ☀️", 0, 5, 3)
 smiles = st.slider("Smiles / laughter today (0 = none, 10 = lots 😄)", 0, 10, 5)
 
 # --- Add entry ---
 if st.button("Add Happiness Boost"):
-    # Determine period label with emoji
-    if period_days <= 8:
-        period_label = f"{period_days} days 🔴"
-    elif period_days <= 15:
-        period_label = f"{period_days} days 🟡"
+    today = date.today()
+    if today.month == 12:
+        # If December, go to January of next year
+        target_date = date(today.year + 1, 1, 8)
     else:
-        period_label = f"{period_days} days 🟢"
+        target_date = date(today.year, today.month + 1, 8)
+
+    days_until = (target_date - today).days
+    st.info(f"Days until period : {days_until}")
+        
+    # Determine period label with emoji
+    if days_until <= 8:
+        period_label = f"{days_until} days 🔴"
+    elif days_until <= 15:
+        period_label = f"{days_until} days 🟡"
+    else:
+        period_label = f"{days_until} days 🟢"
 
     # --- Period-based suggestions ---
-    if period_days <= 8:
+    if days_until <= 8:
         st.warning("Period is approaching soon — take extra care of yourself!")
-    elif period_days <= 15:
+    elif days_until <= 15:
         st.info("Period is a bit away — a good time to plan some self-care!")
     else:
         st.success("Period is far away — enjoy your day! 🌞")
@@ -53,15 +62,9 @@ if st.button("Add Happiness Boost"):
         st.success("Awesome! 😆 Lots of laughter today — keep spreading joy!")
 
     # --- Combined suggestions ---
-    if period_days <= 8 and weather <= 1 and smiles <= 2:
+    if days_until <= 8 and weather <= 1 and smiles <= 2:
         st.error("Tough day ahead 😣 — consider calling a friend, watching a favorite show, or relaxing with some comfort food!")
-    elif period_days <= 8 and smiles >= 7:
+    elif days_until <= 8 and smiles >= 7:
         st.success("Even close to period, your high spirits shine! Keep smiling 🌟")
     elif weather == 0 and smiles >= 7:
         st.success("Stormy outside but your mood is great 😄 — keep the positive energy flowing!")
-
-
-
-
-
-

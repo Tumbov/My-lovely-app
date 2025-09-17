@@ -4,7 +4,7 @@ from datetime import date, timedelta
 today= date.today ()
 period_day = 8
 period_window = 2
-st.markdown(f'<p style="font-size:10px;"> Rate him this day </p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:10px;"> Rate him today </p>', unsafe_allow_html=True)
 sentiment_mapping = ["You must tell him where he should do better", "Hold on, maybe it is not his day", "Well, this is completely okay, everyone has a good and a bad days and periods", "We are in the UP'S, enjoy every second", "TELL HIM HOW MUCH!!"]
 selected = st.feedback("stars")
 
@@ -113,6 +113,7 @@ if st.button("Add Happiness Boost"):
     elif weather == 0 and smiles >= 7:
         st.success("Stormy outside but your mood is great 😄 — keep the energy up!")
     
+
 
 
 

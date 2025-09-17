@@ -24,43 +24,43 @@ if st.button("Add Happiness Boost"):
     else:
         period_label = f"{period_days} days 🟢"
 
-  
+    # --- Period-based suggestions ---
+    if period_days <= 8:
+        st.warning("Period is approaching soon — take extra care of yourself!")
+    elif period_days <= 15:
+        st.info("Period is a bit away — a good time to plan some self-care!")
+    else:
+        st.success("Period is far away — enjoy your day! 🌞")
 
-# Period-based suggestions
-if period_days <= 8:
-    st.warning("Period is approaching soon — take extra care of yourself!")
-elif period_days <= 15:
-    st.info("Period is a bit away — a good time to plan some self-care!")
-else:
-    st.success("Period is far away — enjoy your day! 🌞")
+    # --- Weather-based suggestions ---
+    if weather == 0:
+        st.info("Stormy day outside 🌩 — maybe stay cozy indoors and watch something fun!")
+    elif weather <= 2:
+        st.info("A bit gloomy outside 🌧️ — perfect for reading, relaxing, or calling a friend!")
+    elif weather <= 4:
+        st.success("Nice weather ☀️ — a short walk can boost your mood!")
+    else:
+        st.success("Absolutely sunny 🌞 — enjoy the day and maybe go outside!")
 
-# Weather-based suggestions
-if weather == 0:
-    st.info("Stormy day outside 🌩 — maybe stay cozy indoors and watch something fun!")
-elif weather <= 2:
-    st.info("A bit gloomy outside 🌧️ — perfect for reading, relaxing, or calling a friend!")
-elif weather <= 4:
-    st.success("Nice weather ☀️ — a short walk can boost your mood!")
-else:
-    st.success("Absolutely sunny 🌞 — enjoy the day and maybe go outside!")
+    # --- Smiles / laughter-based suggestions ---
+    if smiles == 0:
+        st.warning("No smiles today? 😔 Try to watch a comedy or call someone to laugh!")
+    elif smiles <= 4:
+        st.info("Some smiles today 🙂 — keep it going!")
+    elif smiles <= 7:
+        st.success("Good job laughing today 😄 — keep your spirits up!")
+    else:
+        st.success("Awesome! 😆 Lots of laughter today — keep spreading joy!")
 
-# Smiles / laughter-based suggestions
-if smiles == 0:
-    st.warning("No smiles today? 😔 Try to watch a comedy or call someone to laugh!")
-elif smiles <= 4:
-    st.info("Some smiles today 🙂 — keep it going!")
-elif smiles <= 7:
-    st.success("Good job laughing today 😄 — keep your spirits up!")
-else:
-    st.success("Awesome! 😆 Lots of laughter today — keep spreading joy!")
+    # --- Combined suggestions ---
+    if period_days <= 8 and weather <= 1 and smiles <= 2:
+        st.error("Tough day ahead 😣 — consider calling a friend, watching a favorite show, or relaxing with some comfort food!")
+    elif period_days <= 8 and smiles >= 7:
+        st.success("Even close to period, your high spirits shine! Keep smiling 🌟")
+    elif weather == 0 and smiles >= 7:
+        st.success("Stormy outside but your mood is great 😄 — keep the positive energy flowing!")
 
-# Combined suggestions
-if period_days <= 8 and weather <= 1 and smiles <= 2:
-    st.error("Tough day ahead 😣 — consider calling a friend, watching a favorite show, or relaxing with some comfort food!")
-elif period_days <= 8 and smiles >= 7:
-    st.success("Even close to period, your high spirits shine! Keep smiling 🌟")
-elif weather == 0 and smiles >= 7:
-    st.success("Stormy outside but your mood is great 😄 — keep the positive energy flowing!")
+
 
 
 

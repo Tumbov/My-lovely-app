@@ -30,7 +30,11 @@ if st.button("Add Happiness Boost"):
         st.image ("https://media1.tenor.com/m/Dwrij1L3z_0AAAAC/gnome-knitting-gnome.gif", caption ="You are getting there darling!")
     elif smiles == 1:
         st.image ("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzZiM3R4NjZ3cTd5aWg3aGk4ZzRzeDB1cnVxaHpxODFnZjYyN2lkYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYsDZrZAggnPPGM/giphy.gif", caption = "YOU ARE GETTING THERE !!! better one than none ;)" )
-         # --- Determine period status ---
+    elif smiles > 5 and smiles < 10:
+        st.image ("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmtjcHBzdjczY2hqNTNrY2x4dzd3eXB4enR1Z3F6dWlyc2h1MjFwOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fpmJ0eZWcSZAcGoIv5/giphy.gif", caption = "I am jealous, shere some with me, PLEASE!")     
+    elif smiles > 1 and smiles < 5:
+        st.image ("https://media.tenor.com/TlC6-doS0XgAAAAi/boing.gif", caption = "Keep going, keep smiling!")
+    # --- Determine period status ---
     if checked:
         st.error("BLOOD BLOOD EVERYWHERE — you are on your period 🔴")
         days_until = 30  # approximate next period
@@ -96,4 +100,5 @@ if st.button("Add Happiness Boost"):
     elif weather == 0 and smiles >= 7:
         st.success("Stormy outside but your mood is great 😄 — keep the energy up!")
     
+
 

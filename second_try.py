@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import date
 
-st.title("💖 Daily Mood Tracker 💖")
+st.title("💖 Daily Happiness Boost 💖")
 
 # --- Initialize session state correctly ---
 if 'mood_data' not in st.session_state or 'reset' not in st.session_state:
@@ -15,7 +15,7 @@ weather = st.slider("Weather today: 0 = Storm 🌩, 5 = Very Sunny ☀️", 0, 5
 smiles = st.slider("Smiles / laughter today (0 = none, 10 = lots 😄)", 0, 10, 5)
 
 # --- Add entry ---
-if st.button("Add Mood Entry"):
+if st.button("Add Happiness Boost"):
     # Determine period label with emoji
     if period_days <= 8:
         period_label = f"{period_days} days 🔴"
@@ -61,6 +61,7 @@ elif period_days <= 8 and smiles >= 7:
     st.success("Even close to period, your high spirits shine! Keep smiling 🌟")
 elif weather == 0 and smiles >= 7:
     st.success("Stormy outside but your mood is great 😄 — keep the positive energy flowing!")
+
 
 
 

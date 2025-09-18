@@ -1,6 +1,17 @@
 import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
+st.markdown(
+    """
+    <link rel="manifest" href="/manifest.json">
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js');
+      }
+    </script>
+    """,
+    unsafe_allow_html=True
+)
 today= date.today ()
 period_day = 8
 period_window = 2
@@ -125,6 +136,7 @@ st.markdown(
     unsafe_allow_html=True
 
 )
+
 
 
 
